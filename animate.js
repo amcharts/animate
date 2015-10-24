@@ -37,7 +37,7 @@ not apply to any other amCharts products that are covered by different licenses.
 		var raf = function( self ) {
 			setTimeout( function() {
 				self._onFrame( new Date().getTime() );
-			}, fps);
+			}, fps );
 		};
 
 	} else {
