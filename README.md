@@ -1,4 +1,4 @@
-# amCharts Plugin: Animate Data
+# amCharts Animate
 
 Version: 1.0.0
 
@@ -24,10 +24,10 @@ Here are some examples:
 
 ## Installation
 
-Include `animateData.min.js` on your web page:
+Include `animate.min.js` on your web page:
 
 ```
-<script src="//www.amcharts.com/lib/3/plugins/tools/animateData/animateData.min.js"></script>
+<script src="//www.amcharts.com/lib/3/plugins/animate/animate.min.js"></script>
 ```
 
 ## Usage

@@ -1,5 +1,5 @@
 /*
-Plugin Name: amCharts Animate Data
+Plugin Name: amCharts Animate
 Description: Smoothly animates the `dataProvider`
 Author: Paul Chapman, amCharts
 Version: 1.0.0
