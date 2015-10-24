@@ -34,18 +34,14 @@ not apply to any other amCharts products that are covered by different licenses.
 	if ( typeof requestAnimationFrame === "undefined" ) {
 		var fps = 1000 / 60;
 
-		var raf = function( self ) {
+		var raf = function( f ) {
 			setTimeout( function() {
-				self._onFrame( new Date().getTime() );
+				f( new Date().getTime() );
 			}, fps );
 		};
 
 	} else {
-		var raf = function( self ) {
-			requestAnimationFrame( function( now ) {
-				self._onFrame( now );
-			} );
-		};
+		var raf = requestAnimationFrame;
 	}
 
 
@@ -161,6 +157,12 @@ not apply to any other amCharts products that are covered by different licenses.
 		this._animations = [];
 		this._onBeforeFrames = [];
 		this._onAfterFrames = [];
+
+		var self = this;
+
+		this._raf = function( now ) {
+			self._onFrame( now );
+		};
 	}
 
 	Animator.prototype.animate = function( animation ) {
@@ -169,7 +171,7 @@ not apply to any other amCharts products that are covered by different licenses.
 		if ( !this._animating ) {
 			this._animating = true;
 
-			raf( this );
+			raf( this._raf );
 		}
 	};
 
@@ -217,7 +219,7 @@ not apply to any other amCharts products that are covered by different licenses.
 			this._animating = false;
 
 		} else {
-			raf( this );
+			raf( this._raf );
 		}
 	};
 
