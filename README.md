@@ -52,17 +52,21 @@ The second argument is an object that can contain the following options:
 
 ----
 
-The new `dataProvider` must be a completely different array from the old `dataProvider`
+The new `dataProvider` must be different from the old `dataProvider`
 
-If you want to modify the existing `dataProvider`, you will have to create a copy first:
+If you want to modify the existing `dataProvider`, you must create a deep copy:
 
 ```
-// Creates a copy of the old dataProvider
-var newDataProvider = chart.dataProvider.slice();
+// Creates a deep copy of the old dataProvider
+var newDataProvider = JSON.parse(JSON.stringify(chart.dataProvider));
 
 // Adds new data to the new dataProvider
-newDataProvider.push(...);
+newDataProvider.push({ category: "foo", value: 10 });
 
+// Mutates the data in the new dataProvider
+newDataProvider[0].value = 50;
+
+// Animates with the new dataProvider
 chart.animateData(newDataProvider, { duration: 1000 });
 ```
 
