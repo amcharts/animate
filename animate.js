@@ -2,7 +2,7 @@
 Plugin Name: amCharts Animate
 Description: Smoothly animates the `dataProvider`
 Author: Paul Chapman, amCharts
-Version: 1.1.0
+Version: 1.1.1
 Author URI: http://www.amcharts.com/
 
 Copyright 2015 amCharts
