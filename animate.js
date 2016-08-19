@@ -367,26 +367,26 @@ not apply to any other amCharts products that are covered by different licenses.
 			each( chart.valueAxes, function( axis ) {
 				// TODO is it guaranteed that every value axis has an id ?
 				if ( axes[ axis.id ] == null ) {
-					
 					var min = axis.minRR;
 					var max = axis.maxRR;
 
-		            var dif = max - min;
-		            var difE;
-		            if (dif === 0) {		                
-		                difE = Math.pow(10, Math.floor(Math.log(Math.abs(max)) * Math.LOG10E)) / 10;
-		            } else {
-		                difE = Math.pow(10, Math.floor(Math.log(Math.abs(dif)) * Math.LOG10E)) / 10;
-		            }
+					var dif = max - min;
+					var difE;
 
-                    max = Math.ceil(max / difE) * difE + difE;
-		            min = Math.floor(min / difE) * difE - difE;		            
+					if ( dif === 0 ) {
+						difE = Math.pow( 10, Math.floor( Math.log( Math.abs( max ) ) * Math.LOG10E ) ) / 10;
+
+					} else {
+						difE = Math.pow( 10, Math.floor( Math.log( Math.abs( dif ) ) * Math.LOG10E ) ) / 10;
+					}
+
+					max = Math.ceil( max / difE ) * difE + difE;
+					min = Math.floor( min / difE ) * difE - difE;
 
 					axes[ axis.id ] = {
 						minimum: min,
 						maximum: max
 					};
-
 
 					// TODO is this correct ?
 					if ( axis.minimum == null ) {
