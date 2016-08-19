@@ -367,6 +367,12 @@ not apply to any other amCharts products that are covered by different licenses.
 			each( chart.valueAxes, function( axis ) {
 				// TODO is it guaranteed that every value axis has an id ?
 				if ( axes[ axis.id ] == null ) {
+					// This saves the old minimum / maximum so that we can restore it after the animation is complete
+					axes[ axis.id ] = {
+						minimum: axis.minimum,
+						maximum: axis.maximum
+					};
+
 					var min = axis.minRR;
 					var max = axis.maxRR;
 
@@ -380,21 +386,12 @@ not apply to any other amCharts products that are covered by different licenses.
 						difE = Math.pow( 10, Math.floor( Math.log( Math.abs( dif ) ) * Math.LOG10E ) ) / 10;
 					}
 
-					max = Math.ceil( max / difE ) * difE + difE;
-					min = Math.floor( min / difE ) * difE - difE;
-
-					axes[ axis.id ] = {
-						minimum: min,
-						maximum: max
-					};
-
-					// TODO is this correct ?
 					if ( axis.minimum == null ) {
-						axis.minimum = min;
+						axis.minimum = Math.floor( min / difE ) * difE - difE;
 					}
 
 					if ( axis.maximum == null ) {
-						axis.maximum = max;
+						axis.maximum = Math.ceil( max / difE ) * difE + difE;
 					}
 				}
 			} );
